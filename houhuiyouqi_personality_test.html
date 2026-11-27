@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4eadb">
+<title>测测你的性格对应《后会友期》里的谁</title>
+<style>
+:root{--paper:#f6efe4;--ink:#302d2a;--muted:#81766c;--rust:#b7654d;--sage:#788878;--gold:#c69b58;--line:#e4d8c8;--white:#fffdf8}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(#9d866c .55px,transparent .55px);background-size:7px 7px}
+button{font:inherit;cursor:pointer}.shell{width:min(920px,calc(100% - 32px));margin:0 auto;padding:28px 0 54px}
+.topline{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.logo{font-family:Georgia,serif;font-style:italic;color:var(--rust);font-size:17px}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:24px;box-shadow:0 18px 55px #5b473014;overflow:hidden}
+.hero{margin-top:22px;padding:clamp(28px,6vw,64px);position:relative;min-height:570px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#fffdf8 0%,#f5e9d9 100%)}
+.hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #c69b5860;border-radius:50%;right:-75px;top:-70px;box-shadow:0 0 0 22px #c69b5810,0 0 0 48px #c69b5808}
+.eyebrow{font-size:12px;letter-spacing:.25em;color:var(--rust);font-weight:700}
+h1{font-family:"Songti SC","STSong",serif;font-size:clamp(34px,7vw,66px);line-height:1.18;letter-spacing:.02em;margin:22px 0 16px;font-weight:600}
+h1 span{color:var(--rust);display:block}
+.subtitle{font-family:Georgia,serif;font-style:italic;color:var(--muted);font-size:16px}
+.intro{max-width:520px;line-height:1.9;color:#655c54;margin:24px 0 28px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}.tag{border:1px solid var(--line);border-radius:99px;padding:7px 12px;font-size:12px;color:#74685d;background:#fff9f1}
+.primary{border:0;background:var(--rust);color:white;border-radius:99px;padding:15px 30px;box-shadow:0 8px 20px #b7654d38;transition:.2s}.primary:hover{transform:translateY(-2px);background:#9f503d}
+.footnote{font-size:11px;color:#9b8e80;margin-top:22px}
+.quiz{margin-top:22px;padding:clamp(22px,5vw,48px);min-height:540px}
+.quiz-head{display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--muted);font-size:13px}
+.progress{height:6px;background:#eee4d8;border-radius:99px;margin:18px 0 36px;overflow:hidden}.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--rust),var(--gold));border-radius:99px;transition:width .35s}
+.q-kicker{font-size:11px;color:var(--rust);letter-spacing:.2em;font-weight:700}
+.question{font-family:"Songti SC","STSong",serif;font-size:clamp(23px,4vw,34px);line-height:1.55;margin:14px 0 26px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.option{border:1px solid var(--line);border-radius:15px;padding:17px 18px;text-align:left;background:#fffdfa;display:flex;gap:13px;align-items:flex-start;line-height:1.65;color:#514940;transition:.2s;min-height:82px}
+.option:hover{border-color:var(--rust);background:#fbf1e8;transform:translateY(-2px)}
+.option .letter{flex:0 0 27px;height:27px;border-radius:50%;display:grid;place-items:center;background:#f1e6d9;color:var(--rust);font-family:Georgia,serif}
+.option:focus-visible,.primary:focus-visible,.ghost:focus-visible{outline:3px solid #c69b5880;outline-offset:3px}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:30px;gap:12px}
+.ghost{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:99px;padding:11px 19px}.ghost:disabled{opacity:.35;cursor:not-allowed}
+.hint{font-size:12px;color:#9a8d80}
+.result{margin-top:22px;padding:clamp(22px,5vw,48px)}
+.result-top{text-align:center;padding:10px 0 25px}.result-top .eyebrow{letter-spacing:.3em}
+.result-title{font-family:"Songti SC","STSong",serif;font-size:clamp(29px,6vw,48px);margin:12px 0}
+.result-sub{color:var(--muted);font-size:14px}
+.result-card{background:linear-gradient(145deg,#f4e6d5,#fbf6ed 58%,#e8e9df);border:1px solid #e4d5c1;border-radius:22px;padding:clamp(22px,5vw,42px);position:relative;overflow:hidden}
+.result-card:after{content:"✳";position:absolute;right:24px;top:5px;font-size:110px;color:#b7654d12}
+.person-label{font-size:12px;letter-spacing:.22em;color:var(--rust)}
+.person{font-family:"Songti SC","STSong",serif;font-size:clamp(38px,8vw,64px);margin:10px 0 6px}
+.match{display:inline-block;border:1px solid #c69b58;border-radius:99px;padding:6px 13px;font-size:12px;color:#85653a;margin:8px 0 20px}
+.quote{font-family:"Songti SC","STSong",serif;font-size:clamp(18px,3vw,24px);line-height:1.65;max-width:650px}
+.details{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.detail{background:#fffdf8;border:1px solid var(--line);border-radius:16px;padding:20px}.detail h3{font-size:13px;color:var(--rust);margin:0 0 10px;letter-spacing:.08em}.detail p{font-size:14px;line-height:1.85;color:#625950;margin:0}
+.score-title{font-size:13px;color:var(--muted);margin:28px 0 12px}
+.score-row{display:grid;grid-template-columns:75px 1fr 42px;gap:10px;align-items:center;margin:10px 0;font-size:12px;color:#75695e}
+.bar{height:7px;border-radius:99px;background:#eee5da;overflow:hidden}.bar i{display:block;height:100%;background:var(--sage);border-radius:99px}
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hidden{display:none!important}.fade{animation:fade .38s ease both}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:620px){.shell{width:min(100% - 20px,920px);padding-top:18px}.hero{min-height:590px}.options{grid-template-columns:1fr}.option{min-height:68px}.details{grid-template-columns:1fr}.quiz{min-height:600px}.hint{display:none}.topline{font-size:10px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topline"><div class="logo">After the Farewell</div><div>FRIENDSHIP · PERSONALITY TEST</div></div>
+  <section class="panel hero" id="home">
+    <div class="eyebrow">A LITTLE TEST ABOUT YOU</div>
+    <h1>测测你的性格<br><span>对应《后会友期》里的谁</span></h1>
+    <div class="subtitle">Some people stay. Some people teach us.</div>
+    <p class="intro">如果把友情比作一段旅程，你会是那个默默照顾大家的人、把话说开的人，还是看起来云淡风轻、心里却装着很多细节的人？用 40 道日常选择题，看看你和哪位嘉宾的性格气质最同频。</p>
+    <div class="tags"><span class="tag">20 道生活化题目</span><span class="tag">8 位嘉宾匹配</span><span class="tag">约 2–3 分钟</span><span class="tag">仅供娱乐</span></div>
+    <button class="primary" id="startBtn">开始测一测　→</button>
+    <div class="footnote">本测试为趣味性格联想，不代表对嘉宾本人真实性格的评价。</div>
+  </section>
+
+  <section class="panel quiz hidden" id="quiz">
+    <div class="quiz-head"><span id="stepText">QUESTION 01 / 20</span><span id="percent">2%</span></div>
+    <div class="progress"><div id="progressFill"></div></div>
+    <div class="q-kicker" id="qKicker">ABOUT YOUR EVERYDAY LIFE</div>
+    <div class="question" id="questionText"></div>
+    <div class="options" id="options"></div>
+    <div class="nav"><button class="ghost" id="prevBtn">← 上一题</button><span class="hint">选一个最接近真实自己的答案</span><button class="ghost" id="nextBtn" disabled>下一题 →</button></div>
+  </section>
+
+  <section class="panel result hidden" id="result">
+    <div class="result-top"><div class="eyebrow">YOUR FRIENDSHIP ARCHETYPE</div><div class="result-title">你的《后会友期》同频嘉宾</div><div class="result-sub">答案没有好坏，只是你与世界相处的方式</div></div>
+    <div class="result-card" id="resultCard">
+      <div class="person-label">与你最同频的嘉宾是</div>
+      <div class="person" id="personName"></div>
+      <div class="match" id="matchPct"></div>
+      <div class="quote" id="quote"></div>
+    </div>
+    <div class="details">
+      <div class="detail"><h3>性格画像 · WHO YOU ARE</h3><p id="traits"></p></div>
+      <div class="detail"><h3>匹配理由 · WHY IT FITS</h3><p id="reason"></p></div>
+      <div class="detail"><h3>隐藏优势 · YOUR SUPERPOWER</h3><p id="strength"></p></div>
+      <div class="detail"><h3>趣味彩蛋 · LITTLE SECRET</h3><p id="easter"></p></div>
+    </div>
+    <div class="score-title">你的性格倾向分布</div><div id="scoreBars"></div>
+    <div class="actions"><button class="primary" id="restartBtn">再测一次 ↻</button><button class="ghost" id="shareBtn">复制结果文案</button></div>
+    <div class="footnote" style="text-align:center">结果仅为娱乐性格映射；嘉宾描述是节目气质联想，不构成事实判断。</div>
+  </section>
+</main>
+<script>
+const people = [
+ {name:"文吉儿",tag:"细腻表达型",quote:"你不是想要所有人的偏爱，只是认真对待每一份真心。",traits:"感受力细腻，重视关系中的回应与仪式感。你愿意把心里的想法讲清楚，也希望自己的在意被看见。",reason:"你在选择中表现出对情感细节、表达和关系意义的关注，和文吉儿在节目中呈现出的细腻表达气质形成呼应。",strength:"能捕捉别人忽略的情绪变化，也有把模糊感受说清楚的能力。",easter:"你可能会记得很多年前朋友随口说过的一句话；对你来说，那不是小事，是一枚时间胶囊。"},
+ {name:"王子璇",tag:"清醒边界型",quote:"温柔可以有，但原则也要有；你的好，不需要靠委屈自己证明。",traits:"理性、独立、有边界感。你不轻易被气氛裹挟，遇到重要选择时更愿意先想清楚，再给出态度。",reason:"你的答案体现出规则意识、独立判断和对个人空间的重视，与王子璇在节目中呈现出的清醒与边界感相契合。",strength:"在复杂关系里保持判断力，能把情绪和问题分开处理。",easter:"你看起来像是随便都行，实际上心里早有一张清晰的优先级清单。"},
+ {name:"白小纯",tag:"直球行动型",quote:"想那么多不如先走一步，真诚的人自带一点可爱。",traits:"直接、爽快、行动力强。你不太喜欢绕弯子，重视当下体验，很多时候先做起来再慢慢调整。",reason:"你的选择偏向即时行动、坦率表达和轻松互动，和白小纯在节目中呈现出的直球感、少年气相呼应。",strength:"能快速打破尴尬，把想法落到行动上，让相处少一点猜测。",easter:"朋友说“我有个想法”，你可能已经开始找路线、订位置了。"},
+ {name:"青稚",tag:"认真担当型",quote:"你把事情放在心上，所以也把同行的人放在心上。",traits:"认真、有责任心、在意共同目标。你对自己要求不低，也希望团队里的每个人都能拿出诚意。",reason:"你更看重承诺、投入和长期积累，遇到问题倾向于解决而不是敷衍，这与青稚在节目中呈现出的认真劲儿相呼应。",strength:"有韧性，关键时刻靠得住；能把一群人的目标真正往前推。",easter:"你嘴上说“没事我来”，心里已经默默排好了三套执行方案。"},
+ {name:"马天宇",tag:"温和观察型",quote:"不必每次都站在聚光灯下，你的温柔本身就很有分量。",traits:"温和、敏锐、善于观察。你不急着表达立场，常常先听懂别人的情绪，再决定怎样回应。",reason:"你倾向于给人留余地、避免无谓冲突，也重视舒服自然的相处节奏，与马天宇在节目中的温和观察气质相近。",strength:"共情和倾听能力突出，擅长在紧张关系里给彼此留一个台阶。",easter:"聚会结束后，大家才发现你记得每个人的喜好，还顺手照顾了落单的人。"},
+ {name:"张萌",tag:"热烈主场型",quote:"生活已经够平淡了，喜欢就大方一点，想做就认真一点。",traits:"热情、有主见、表达鲜明。你愿意主动创造气氛，也不怕为自己在意的事争取空间。",reason:"你的答案显示出较强的主动性、表达欲和组织倾向，和张萌在节目中呈现出的鲜明、热烈风格相映照。",strength:"能调动资源、带动氛围，在犹豫不决时推动事情发生。",easter:"你可能是群聊里那个发起聚会的人，也是最后一个确认大家是否安全到家的人。"},
+ {name:"许飞",tag:"独立真诚型",quote:"不必为了合群改变音量，你的节奏就是你的节奏。",traits:"独立、坦率、有自己的审美和判断。你重视真实，不太愿意为了表面和谐说违心的话。",reason:"你更愿意坚持内心标准，表达直接，也需要足够的个人空间，这与许飞在节目中呈现出的独立气质相呼应。",strength:"不容易被外界评价带跑，能在压力下守住自己的方向。",easter:"你不一定常常发朋友圈，但每次出现都很有自己的风格。"},
+ {name:"厉娜",tag:"柔韧共情型",quote:"你可以柔软，也可以坚定；温柔从来不是没有力量。",traits:"敏感而有韧性，重感情，也懂得在受伤后慢慢整理自己。你愿意理解别人，但不会永远忽略自己的感受。",reason:"你的选择体现出对情感的珍惜、对关系变化的敏锐，以及在经历波动后继续向前的韧性，与厉娜的节目气质形成联想。",strength:"恢复力和情绪洞察力兼具，能把经历沉淀成理解他人的能力。",easter:"你可能会在深夜突然想起一段旧友回忆，然后决定：算了，明天要吃顿好的。"}
+];
+const raw = [
+["临时计划被打乱，你通常会？",["马上重新安排，先把事情推进","先看看大家的情绪，再决定怎么调整","觉得变化也不错，顺势体验","弄清楚原因，再确定新的方案"]],
+["朋友迟到半小时，你会？",["发消息确认情况，顺便找点事做","直接说出自己的感受，不憋着","没关系，见面开心最重要","提醒下次注意，也会理解特殊情况"]],
+["到了陌生聚会，你更像？",["主动介绍自己，带动气氛","先观察谁和谁熟，再慢慢加入","找到一个聊得来的人深聊","随遇而安，哪里舒服待哪里"]],
+["做决定时，你最依赖？",["自己的直觉和价值判断","事实、细节和可执行性","身边人的感受与反馈","先行动试试看，再复盘"]],
+["朋友向你倾诉烦恼，你会？",["认真听完，帮他梳理情绪","直接给出解决办法","陪他做点开心的事转换心情","问清楚他真正想要什么支持"]],
+["你最不能接受哪种相处方式？",["忽冷忽热、没有回应","没有边界、过度干涉","说一套做一套","遇事逃避、不愿沟通"]],
+["周末突然空出一天，你会？",["安排一件一直想做的事","约朋友见面，热热闹闹","给自己留白，慢慢恢复能量","整理生活，把拖延的事处理掉"]],
+["团队合作中，你自然承担？",["统筹进度和分工","照顾气氛、连接成员","专注自己的部分并交付","发现问题就主动补位"]],
+["收到一条语气不太好的消息，你会？",["先确认是不是自己误读","直接问对方发生了什么","暂时不回，等情绪过去","把自己的感受清楚表达出来"]],
+["你更喜欢哪种礼物？",["对方记得我随口提过的小事","实用、品质好，能用很久","有创意、有惊喜感","亲手准备、带着心意"]],
+["面对长期目标，你通常？",["拆成计划，一步步完成","靠热情启动，边做边调整","找伙伴互相督促","保持自己的节奏，不被催促"]],
+["朋友之间产生误会，你倾向于？",["找机会当面说开","先冷静，整理好事实再沟通","主动递台阶，不想关系僵住","明确底线，不接受反复误解"]],
+["在旅行中，你最在意？",["行程顺畅，重要体验都安排到","和谁一起、相处是否舒服","保留惊喜，走到哪算哪","深入体验当地生活和细节"]],
+["你在群聊里的状态？",["常常发起话题和活动","不常说话，但会认真回复","看到有趣的就忍不住接梗","更喜欢私聊，交流更具体"]],
+["遇到不公平的事，你会？",["直接表达立场","先弄清事实和规则","关注受影响的人，给予支持","想办法推动一个实际改变"]],
+["别人夸奖你，你会？",["大方接受，也回夸对方","有点不好意思，转移话题","追问具体哪里做得好","开心收下，继续做自己的事"]],
+["你更享受哪种工作状态？",["目标明确、节奏稳定","有创造空间，可以自己发挥","和靠谱的人并肩完成任务","变化丰富，能不断尝试新事物"]],
+["朋友临时需要帮忙，你会？",["能帮就马上行动","先确认自己能承担到什么程度","想办法协调资源帮他解决","陪着他，先让他不那么慌"]],
+["你对社交媒体的态度？",["记录生活里值得纪念的瞬间","只分享真正想表达的观点","喜欢看大家的生活和新鲜事","低频使用，更重视线下连接"]],
+["压力大时，你最常做什么？",["列清单，把问题逐项解决","找信任的人聊一聊","独处、散步或听音乐","先做点简单的事找回掌控感"]],
+["你希望别人怎样记住你？",["靠谱，说到做到","真诚，有自己的想法","温暖，让人相处舒服","有趣，能带来快乐"]],
+["朋友意见和你不同，你会？",["把理由讲清楚，也听对方说","尊重差异，不必事事一致","用轻松方式缓和气氛","找一个双方都能接受的做法"]],
+["买东西时你更像？",["先研究评价和参数","喜欢就买，重视当下感受","考虑实用性和长期价值","愿意为设计和独特体验买单"]],
+["一个人待着时，你会？",["充电、整理思绪","做点创作或培养兴趣","看剧听歌，轻松放空","学习新东西，让自己有进步"]],
+["你怎么看待承诺？",["答应了就尽力做到","不轻易答应，但答应就负责","根据现实情况坦诚沟通","承诺重要，行动更重要"]],
+["朋友很久没联系，你会？",["主动发消息，重新连接","不强求，想起时自然问候","会有点失落，但尊重彼此节奏","找个具体理由约出来见面"]],
+["你最容易被什么打动？",["细节里的用心","坦率直接、不拐弯抹角","关键时刻的担当","轻松自在、不需要伪装"]],
+["临近截止日期，你通常？",["提前完成，留出检查时间","集中精力冲刺，效率很高","拉好协作，确保大家同步","按优先级处理，不慌不乱"]],
+["别人误会了你的意思，你会？",["耐心解释，直到对方理解","说明一次，剩下交给时间","用行动证明，不争辩太久","直接指出误会来自哪里"]],
+["你在朋友眼里可能是？",["那个会操心安排的人","那个有话直说的人","那个很会倾听的人","那个总能想出新点子的人"]],
+["面对新鲜挑战，你会？",["先评估风险和资源","很兴奋，想立刻试试","找个伙伴一起开始","观察一阵，准备好再出发"]],
+["关系变淡时，你更愿意？",["主动沟通，看看能否修复","接受变化，不强求回到从前","确认彼此是否还有共同期待","给时间，也把生活过好"]],
+["你最欣赏朋友哪一点？",["有原则、有边界","有趣、坦荡、生命力强","细腻、愿意理解别人","可靠、遇事不掉链子"]],
+["做一件重要的事，你更需要？",["清晰目标和自主空间","团队支持和积极反馈","灵感与自由度","稳定节奏和充分准备"]],
+["你怎样表达在乎？",["记住细节并付诸行动","直接说出来，不让对方猜","陪伴对方，给足时间","在对方需要时及时出现"]],
+["如果聚会冷场，你会？",["抛个话题让大家参与","讲个小故事活跃气氛","观察谁想说话，帮忙接话","不介意安静，舒服就好"]],
+["面对批评，你通常？",["先判断有没有道理","会在意，但努力消化","当场沟通，不让问题积累","把它变成下一次改进的动力"]],
+["你更相信？",["长期行动胜过漂亮话","真诚表达能减少误会","每个人都需要自己的空间","好的关系需要双方经营"]],
+["理想中的友情更像？",["彼此独立，却始终支持","能分享日常，也能聊心事","一起成长，互相成就","自在自然，不必时时证明"]],
+["完成一段忙碌的日子后，你最想？",["和重要的人好好吃顿饭","独自享受安静时光","去做一件期待已久的事","复盘收获，为下一程做准备"]]
+];
+// 每道题的四个选项分别落在不同性格倾向；选项轮换映射，避免固定选项位置暗示结果。
+const keys = ["文吉儿","王子璇","白小纯","青稚","马天宇","张萌","许飞","厉娜"];
+const questionData = raw.filter((_,i)=>i%2===0).map((q,i)=>({text:q[0],opts:q[1].map((label,j)=>({label,key:keys[(i*3+j*2+(i%4))%8]}))}));
+let current=0, answers=Array(40).fill(null);
+const $=id=>document.getElementById(id);
+function show(view){["home","quiz","result"].forEach(id=>$(id).classList.toggle("hidden",id!==view));window.scrollTo({top:0,behavior:"smooth"});}
+function renderQuestion(){
+ const q=questionData[current];$("stepText").textContent=`QUESTION ${String(current+1).padStart(2,"0")} / ${questionData.length}`;
+ $("percent").textContent=`${Math.round((current+1)/questionData.length*100)}%`;$("progressFill").style.width=`${(current+1)/questionData.length*100}%`;
+ $("qKicker").textContent=["DAILY RHYTHM","RELATIONSHIP STYLE","YOUR INNER WORLD","CHOICES & VALUES"][current%4];
+ $("questionText").textContent=q.text;$("options").innerHTML="";
+ q.opts.forEach((o,j)=>{const b=document.createElement("button");b.className="option"+(answers[current]===j?" selected":"");b.innerHTML=`<span class="letter">${"ABCD"[j]}</span><span></span>`;b.querySelector("span:last-child").textContent=o.label;b.style.borderColor=answers[current]===j?"var(--rust)":"";b.style.background=answers[current]===j?"#fbf1e8":"";b.onclick=()=>{answers[current]=j;renderQuestion();};$("options").appendChild(b);});
+ $("prevBtn").disabled=current===0;$("nextBtn").disabled=answers[current]===null;$("nextBtn").textContent=current===39?"查看我的结果 →":"下一题 →";
+ $("quiz").classList.remove("fade");void $("quiz").offsetWidth;$("quiz").classList.add("fade");
+}
+function finish(){
+ const scores=Object.fromEntries(keys.map(k=>[k,0]));
+ answers.forEach((a,i)=>{if(a!==null)scores[questionData[i].opts[a].key]++;});
+ const ranked=keys.map(k=>({key:k,score:scores[k]})).sort((a,b)=>b.score-a.score);
+ // 平分时用完整答案序列的稳定哈希打破平局，避免固定偏向某位嘉宾
+ const tied=ranked.filter(x=>x.score===ranked[0].score);
+ let hash=answers.reduce((n,a,i)=>(n*31+(a+1)*(i+7))>>>0,17);
+ const winner=tied[hash%tied.length].key, p=people.find(x=>x.name===winner);
+ const total=ranked.reduce((n,x)=>n+x.score,0)||1;
+ const pct=Math.round((scores[winner]/questionData.length)*100);
+ $("personName").textContent=p.name;$("matchPct").textContent=`${p.tag} · 本次匹配指数 ${pct}%`;
+ $("quote").textContent=`“${p.quote}”`;$("traits").textContent=p.traits;$("reason").textContent=p.reason;$("strength").textContent=p.strength;$("easter").textContent=p.easter;
+ $("scoreBars").innerHTML=ranked.map(x=>`<div class="score-row"><span>${x.key}</span><div class="bar"><i style="width:${Math.round(x.score/40*100)}%"></i></div><span>${Math.round(x.score/40*100)}%</span></div>`).join("");
+ $("shareBtn").onclick=()=>{const text=`我的《后会友期》性格匹配结果：${p.name}｜${p.tag}\n${p.quote}\n快来测测你对应谁！`;if(navigator.clipboard?.writeText){navigator.clipboard.writeText(text).then(()=>{$("shareBtn").textContent="已复制 ✓";}).catch(()=>fallbackCopy(text));}else fallbackCopy(text);};
+ show("result");
+}
+function fallbackCopy(text){const t=document.createElement("textarea");t.value=text;document.body.appendChild(t);t.select();try{document.execCommand("copy");$("shareBtn").textContent="已复制 ✓";}catch(e){$("shareBtn").textContent="请手动复制";}t.remove();}
+$("startBtn").onclick=()=>{current=0;answers=Array(40).fill(null);show("quiz");renderQuestion();};
+$("prevBtn").onclick=()=>{if(current>0){current--;renderQuestion();}};
+$("nextBtn").onclick=()=>{if(answers[current]===null)return;if(current<questionData.length-1){current++;renderQuestion();}else finish();};
+$("restartBtn").onclick=()=>{current=0;answers=Array(40).fill(null);show("home");};
+</script>
+</body>
+</html>
